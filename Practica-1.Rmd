@@ -1,0 +1,87 @@
+---
+title: "Practica1"
+author: "Grupo Virtual"
+date: "2024-05-15"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r carga_librerias}
+library(readr)
+library(stringr)
+
+```
+# Practica 1
+
+
+## Data Science
+
+## Introduccion a R
+
+```{r carga_datos, include=FALSE}
+epa_http <- read_table("C:/Users/luisqa/Desktop/clase1/Arnau Sangra/epa-http.csv", col_names = FALSE)
+colnames(epa_http) <- c("url", "timestamp", "http_method", "resource", "protocol_version", "codigo_respuesta", "bytes")
+```
+
+### Pregunta 1
+
+¿Cuales son las dimensiones del dataset cargado (número de filas y columnas)?
+
+El numero de columnas es:
+```{r p1_1.1}
+#Numero de columnas
+ncol(epa_http)
+```
+El numero de filas es: 
+```{r p1_1.2}
+#Numero de filas
+ nrow(epa_http)
+```
+¿Valor medio de la columna Bytes?
+```{r p1_1.3}
+epa_http$bytes <- as.numeric(epa_http$bytes)
+mean(epa_http$bytes, na.rm = T)
+```
+
+
+### Pregunta 2
+De las diferentes IPs de origen accediendo al servidor, ¿cuantas pertenecen a una IP 
+claramente educativa (que contenga ".edu")?
+```{r p2_1}
+datos <- epa_http
+
+#datos[,1:2]
+direccion <- datos[,1,1]
+encontro <- str_view(epa_http$direccion, ".edu")
+
+urls_edu <- epa_http$url[grep("\\.edu",epa_http$url)]
+urls_edu_unicas <- unique(urls_edu)
+length(urls_edu)
+length(urls_edu_unicas)
+encontro 
+#eate.table(file=epa_http(),header=TRUE)
+#variable <- c(epa_http,0)
+#variable
+#valores <- data.frame(x1,x2, x3,x4,x5,x6,x7)
+```
+
+
+### Pregunta 3
+De todas las peticiones recibidas por el servidor cual es la hora en la que hay mayor volumen 
+de peticiones HTTP de tipo "GET"?
+```{r p3}
+
+```
+
+
+```{r pressure, echo=FALSE}
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+
